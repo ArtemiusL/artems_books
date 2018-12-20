@@ -1,10 +1,14 @@
 import { ADD_BOOK, REMOVE_BOOK } from './constants/books';
 
 
-export const addBooks = (value, id) => ({
+export const addBooks = (id, title, author, description) => ({
   type: ADD_BOOK,
-  payload: value,
-  id,
+  payload: {
+    id,
+    title,
+    author,
+    description,
+  },
 });
 
 export const remBooks = id => ({
