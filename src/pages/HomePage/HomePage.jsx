@@ -1,12 +1,14 @@
 import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
 
-import Users from './Users';
+import Form from './Form';
+import BookPage from './BookPage';
 
 const HomePage = () => (
   <Fragment>
     <Helmet title="Home" />
-    <Users />
+    <Form />
+    <BookPage />
   </Fragment>
 );
 
