@@ -13,10 +13,7 @@ const books = (state = [], action) => {
       ];
 
     case REMOVE_BOOK:
-      return {
-        ...state,
-        id: payload,
-      };
+      return state.filter(item => item.id !== action.id);
 
     default:
       return state;

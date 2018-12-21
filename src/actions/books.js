@@ -11,7 +11,7 @@ export const addBooks = (id, title, author, description) => ({
   },
 });
 
-export const remBooks = id => ({
+export const remBook = id => ({
   type: REMOVE_BOOK,
   payload: id,
 });
