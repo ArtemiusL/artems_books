@@ -5,15 +5,10 @@ import PropTypes from 'prop-types';
 import Page from '_components/Page';
 
 class BookPage extends PureComponent {
-  renderBookPage = () => {
-    const { book } = this.props;
-    return <Page list={book} />;
-  }
-
   render() {
     return (
       <Fragment>
-        {this.renderBookPage()}
+        <Page list={this.props.book} />
       </Fragment>
     );
   }
