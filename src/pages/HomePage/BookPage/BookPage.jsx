@@ -7,7 +7,6 @@ import Page from '_components/Page';
 class BookPage extends PureComponent {
   renderBookPage = () => {
     const { book } = this.props;
-    console.log(book);
     return <Page list={book} />;
   }
 
