@@ -47,6 +47,7 @@ class Form extends PureComponent {
     const {
       fields,
     } = this.state;
+
     return constantFields.map((item) => {
       const { fieldName } = item;
       const currentFieldIndex = fields.map(field => field.name).indexOf(fieldName);
@@ -54,12 +55,13 @@ class Form extends PureComponent {
         return null;
       }
       const currentField = fields[currentFieldIndex];
+
       return (
         <FieldForm
           key={item.id}
           id={item.id}
           name={item.fieldName}
-          handleChangeInput={this.updateInput}
+          handleChange={this.updateInput}
           data={currentField.value}
           {...item}
         />
@@ -95,18 +97,18 @@ class Form extends PureComponent {
 
   handleClickAdd = () => {
     const { fields } = this.state;
-    const { addBooks, books } = this.props;
-    const id = books.length ? books[books.length - 1].id + 1 : 0;
+    const { addBook, books } = this.props;
     if (!(this.isEmptyFields())) {
-      addBooks(id, fields[0].value, fields[1].value, fields[2].value);
-      const getNewState = () => (
+      const id = books.length ? books[books.length - 1].id + 1 : 1;
+      addBook(id, fields[0].value, fields[1].value, fields[2].value);
+      const resetFiledsValue = () => (
         fields.map((item) => {
           const newItem = { ...item, value: '' };
           return newItem;
         })
       );
-      const newFields = getNewState();
 
+      const newFields = resetFiledsValue();
       this.setState({
         fields: newFields,
       });
@@ -129,7 +131,7 @@ class Form extends PureComponent {
 }
 
 Form.propTypes = {
-  addBooks: PropTypes.func,
+  addBook: PropTypes.func,
   books: PropTypes.array,
 };
 

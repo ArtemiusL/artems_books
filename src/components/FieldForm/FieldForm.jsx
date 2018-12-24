@@ -11,7 +11,7 @@ class FieldForm extends PureComponent {
     const {
       data,
       label,
-      handleChangeInput,
+      handleChange,
       name,
     } = this.props;
 
@@ -23,7 +23,7 @@ class FieldForm extends PureComponent {
             name={name}
             required
             value={data}
-            onChange={handleChangeInput}
+            onChange={handleChange}
           />
         </label>
       </div>
@@ -35,7 +35,7 @@ FieldForm.propTypes = {
   label: PropTypes.string,
   data: PropTypes.string,
   name: PropTypes.string,
-  handleChangeInput: PropTypes.func,
+  handleChange: PropTypes.func,
 };
 
 export default FieldForm;

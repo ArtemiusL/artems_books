@@ -3,16 +3,18 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import { remBook } from '_actions/books';
+import { remBook, editBook } from '_actions/books';
 
-import Page from '_components/Page';
+import Book from '_components/Book';
 
-class BookPage extends PureComponent {
+class BooksContainer extends PureComponent {
   createBookBlock = () => {
-    const { book } = this.props;
-    return book.map(item => (
-      <Page
+    const { books } = this.props;
+
+    return books.map(item => (
+      <Book
         removeBook={this.props.remBook}
+        editingBook={this.props.editBook}
         id={item.id}
         title={item.title}
         author={item.author}
@@ -33,20 +35,21 @@ class BookPage extends PureComponent {
   }
 }
 
-BookPage.propTypes = {
-  book: PropTypes.array,
+BooksContainer.propTypes = {
+  books: PropTypes.array,
   remBook: PropTypes.func,
+  editBook: PropTypes.func,
 };
 
 const mapStateToProps = ({ books }) => ({
-  book: books,
+  books,
 });
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators(
-    { remBook },
+    { remBook, editBook },
     dispatch,
   )
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookPage);
+export default connect(mapStateToProps, mapDispatchToProps)(BooksContainer);

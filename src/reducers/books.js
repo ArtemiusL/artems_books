@@ -5,6 +5,7 @@ const books = (state = [], action) => {
     type,
     payload,
   } = action;
+
   switch (type) {
     case ADD_BOOK:
       return [
