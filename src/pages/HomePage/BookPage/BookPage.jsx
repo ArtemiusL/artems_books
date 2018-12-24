@@ -8,7 +8,7 @@ import { remBook } from '_actions/books';
 import Page from '_components/Page';
 
 class BookPage extends PureComponent {
-  createBookBlock= () => {
+  createBookBlock = () => {
     const { book } = this.props;
     return book.map(item => (
       <Page
@@ -21,8 +21,10 @@ class BookPage extends PureComponent {
     ),
     );
   }
+
   render() {
     const BookBlock = this.createBookBlock();
+
     return (
       <Fragment>
         {BookBlock}

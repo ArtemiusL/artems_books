@@ -8,8 +8,6 @@ import styles from './Page.scss';
 class Page extends PureComponent {
   handleRemoveBook = () => {
     const { removeBook, id } = this.props;
-    // eslint-disable-next-line
-    debugger;
     removeBook(id);
   }
 
