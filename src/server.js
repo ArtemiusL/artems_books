@@ -12,7 +12,6 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes, matchRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
-import { all, fork, join } from 'redux-saga/effects';
 import Helmet from 'react-helmet';
 import chalk from 'chalk';
 import _concat from 'lodash/concat';
@@ -77,19 +76,6 @@ app.get('*', (req, res) => {
   // Here's the method for loading data from server-side
   const loadBranchData = () => {
     const branch = matchRoutes(routes, req.path);
-    const sagasToRun = branch.reduce((sagas, routeInfo) => {
-      const { route, match } = routeInfo;
-      if (route.sagasToRun) {
-        return _concat(sagas, route.sagasToRun);
-      }
-
-      return sagas;
-    }, []);
-
-    return store.runSaga(function* runSagas() {
-      const tasks = yield all(sagasToRun.map(saga => fork(saga)));
-      yield all(tasks.map(task => join(task)));
-    }).done;
   };
 
   (async () => {
