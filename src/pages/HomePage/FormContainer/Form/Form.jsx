@@ -8,16 +8,19 @@ import styles from './Form.scss';
 
 const constantFields = [
   {
+    id: 1,
     fieldName: 'title',
     label: 'Введите название книги',
     required: true,
   },
   {
+    id: 2,
     fieldName: 'author',
     label: 'Введите автора книги',
     required: true,
   },
   {
+    id: 3,
     fieldName: 'description',
     label: 'Введите описание книги',
     required: true,
@@ -58,7 +61,7 @@ class Form extends PureComponent {
 
       return (
         <FieldForm
-          key={item.key}
+          key={item.id}
           id={item.id}
           name={item.fieldName}
           handleChange={this.updateInput}
