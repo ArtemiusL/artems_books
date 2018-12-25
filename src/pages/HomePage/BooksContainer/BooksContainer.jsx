@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import { remBook, editBook } from '_actions/books';
+import { removeBook, editBook } from '_actions/books';
 
 import Book from '_components/Book';
 
@@ -13,7 +13,7 @@ class BooksContainer extends PureComponent {
 
     return books.map(item => (
       <Book
-        removeBook={this.props.remBook}
+        removeBook={this.props.removeBook}
         editingBook={this.props.editBook}
         id={item.id}
         key={item.id}
@@ -38,7 +38,7 @@ class BooksContainer extends PureComponent {
 
 BooksContainer.propTypes = {
   books: PropTypes.array,
-  remBook: PropTypes.func,
+  removeBook: PropTypes.func,
   editBook: PropTypes.func,
 };
 
@@ -48,7 +48,7 @@ const mapStateToProps = ({ books }) => ({
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators(
-    { remBook, editBook },
+    { removeBook, editBook },
     dispatch,
   )
 );
