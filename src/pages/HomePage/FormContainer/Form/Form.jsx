@@ -58,7 +58,7 @@ class Form extends PureComponent {
 
       return (
         <FieldForm
-          key={item.id}
+          key={item.key}
           id={item.id}
           name={item.fieldName}
           handleChange={this.updateInput}
@@ -89,11 +89,15 @@ class Form extends PureComponent {
 
   isEmptyFields = () => {
     const { fields } = this.state;
-    if (fields[0].value === '' || fields[1].value === '' || fields[2].value === '') {
-      return true;
-    }
-    return false;
+    return fields.some(item => item.value === '');
   }
+
+  resetFiledsValue = fields => (
+    fields.map((item) => {
+      const newItem = { ...item, value: '' };
+      return newItem;
+    })
+  );
 
   handleClickAdd = () => {
     const { fields } = this.state;
@@ -101,14 +105,7 @@ class Form extends PureComponent {
     if (!(this.isEmptyFields())) {
       const id = books.length ? books[books.length - 1].id + 1 : 1;
       addBook(id, fields[0].value, fields[1].value, fields[2].value);
-      const resetFiledsValue = () => (
-        fields.map((item) => {
-          const newItem = { ...item, value: '' };
-          return newItem;
-        })
-      );
-
-      const newFields = resetFiledsValue();
+      const newFields = this.resetFiledsValue(fields);
       this.setState({
         fields: newFields,
       });

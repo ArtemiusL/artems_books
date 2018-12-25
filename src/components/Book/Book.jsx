@@ -28,7 +28,6 @@ class Book extends PureComponent {
   }
 }
 
-
 Book.propTypes = {
   removeBook: PropTypes.func,
   editingBook: PropTypes.func,

@@ -16,6 +16,7 @@ class BooksContainer extends PureComponent {
         removeBook={this.props.remBook}
         editingBook={this.props.editBook}
         id={item.id}
+        key={item.id}
         title={item.title}
         author={item.author}
         description={item.description}
