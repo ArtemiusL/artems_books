@@ -2,5 +2,33 @@
   padding: 15px;
   background-color: rgba(10, 80, 100, 0.9);
   color: #fff;
+  display: inline-block;
+}
+
+.bookCard {
+  position: relative;
+  width: 240px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.2;
+  color: rgba(0, 0, 0, 0.8);
+  background: #fff;
+}
+
+.delete {
+  display: inline-block;
+  width: 80px;
+  height: 20px;
+  text-align: center;
+  background-color: #d2d2d2;
+  border-radius: 20%;
+  font-size: 14px;
+  line-height: 8px;
+  cursor: pointer;
 }
 
