@@ -36,30 +36,39 @@ class Book extends PureComponent {
     });
   }
 
+  handleBlur = ({ target: { name, value } }) => {
+    const { editingBook, id } = this.props;
+    editingBook(id, { [name]: value });
+  }
+
   handleChange = ({ target: { value } }) => {
     this.setState({
       value,
     });
   }
 
-  createInput = value => (
+  createInput = (value, name) => (
     <input
+      name={name}
       placeholder={value}
       value={this.state.value}
       onChange={this.handleChange}
+      onBlur={this.handleBlur}
     />
   )
 
   render() {
     return (
       <div styleName="root">
-        <span id="title" onDoubleClick={this.handleEditingTitle}>{this.props.title} </span>
-        {this.state.isEditingTitle && this.createInput(this.props.title)} <br />
-        <span id="author" onDoubleClick={this.handleEditingAuthor}>{this.props.author} </span>
-        {this.state.isEditingAuthor && this.createInput(this.props.author)} <br />
-        <span id="description" onDoubleClick={this.handleEditingDescription}>{this.props.description} </span>
-        {this.state.isEditingDescription && this.createInput(this.props.description)} <br />
-        <button onClick={this.handleClick}>remove</button>
+        <div styleName="bookCard">
+          <span id="title" onDoubleClick={this.handleEditingTitle}>{this.props.title} </span>
+          {this.state.isEditingTitle && this.createInput(this.props.title, 'title')} <br />
+          <span id="author" onDoubleClick={this.handleEditingAuthor}>{this.props.author} </span>
+          {this.state.isEditingAuthor && this.createInput(this.props.author, 'author')} <br />
+          <span id="description" onDoubleClick={this.handleEditingDescription}>{this.props.description} </span>
+          {this.state.isEditingDescription && this.createInput(this.props.description, 'description')} <br />
+          <button styleName="delete" onClick={this.handleClick}>Удалить</button>
+        </div>
       </div>
     );
   }
@@ -67,12 +76,11 @@ class Book extends PureComponent {
 
 Book.propTypes = {
   removeBook: PropTypes.func,
-  // editingBook: PropTypes.func,
+  editingBook: PropTypes.func,
   title: PropTypes.string,
   author: PropTypes.string,
   description: PropTypes.string,
   id: PropTypes.number,
-  // fields: PropTypes.array,
 };
 
 export default CSSModules(Book, styles);
