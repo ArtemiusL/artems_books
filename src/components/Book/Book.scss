@@ -8,6 +8,7 @@
 .bookCard {
   position: relative;
   width: 240px;
+  height: 180px;
   margin-bottom: 20px;
   margin-right: 20px;
   display: flex;
@@ -24,15 +25,33 @@
   cursor: text;
 }
 
-.delete {
-  display: inline-block;
-  width: 80px;
-  height: 20px;
+.bookOptions {
   text-align: center;
-  background-color: #d2d2d2;
-  border-radius: 20%;
-  font-size: 14px;
-  line-height: 8px;
-  cursor: pointer;
 }
 
+.delete {
+  position: relative;
+  display: inline-block;
+  padding: 0.5em 1em;
+  outline: none;
+  border-radius: 2px;
+  background: linear-gradient(rgb(110, 112, 120), rgb(81, 81, 86)) rgb(110, 112, 120);
+  font-size: 70%;
+  font-weight: 500;
+  color: rgb(209, 209, 217);
+  text-decoration: none;
+  text-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.delete:hover {
+  background: linear-gradient(rgb(126, 126, 134), rgb(70, 71, 76)) rgb(126, 126, 134);
+}
+
+.delete:active {
+  top: 1px;
+  background: linear-gradient(rgb(76, 77, 82), rgb(56, 57, 62)) rgb(76, 77, 82);
+  box-shadow:
+    0 0 1px rgba(0, 0, 0, 0.5) inset,
+    0 2px 3px rgba(0, 0, 0, 0.5) inset,
+    0 1px 1px rgba(255, 255, 255, 0.1);
+}

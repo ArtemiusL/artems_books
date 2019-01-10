@@ -122,7 +122,7 @@ class Form extends PureComponent {
           <h1>Книжная библиотека</h1>
           {this.createForm()}
         </form>
-        <button onClick={this.handleClickAdd}>
+        <button styleName="button" onClick={this.handleClickAdd}>
           Добавить книгу
         </button>
       </div>

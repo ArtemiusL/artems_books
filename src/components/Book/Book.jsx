@@ -83,13 +83,15 @@ class Book extends PureComponent {
     return (
       <div styleName="root">
         <div styleName="bookCard">
-          <span id="title" styleName="options" onDoubleClick={this.handleEditingTitle}>{this.state.isVisiblyTitle && this.props.title } </span>
-          {this.state.isEditingTitle && this.createInput(this.state.title, 'title')} <br />
-          <span id="author" styleName="options" onDoubleClick={this.handleEditingAuthor}>{this.state.isVisiblyAuthor && this.props.author} </span>
-          {this.state.isEditingAuthor && this.createInput(this.state.author, 'author')} <br />
-          <div id="description" styleName="options" onDoubleClick={this.handleEditingDescription}>{this.state.isVisiblyDescription && this.props.description} </div>
-          {this.state.isEditingDescription && this.createInput(this.state.description, 'description')} <br />
-          <button styleName="delete" onClick={this.handleClick}>Удалить</button>
+          <div styleName="bookOptions">
+            <span id="title" styleName="options" onDoubleClick={this.handleEditingTitle}>{this.state.isVisiblyTitle && this.props.title } </span>
+            {this.state.isEditingTitle && this.createInput(this.state.title, 'title')} <br />
+            <span id="author" styleName="options" onDoubleClick={this.handleEditingAuthor}>{this.state.isVisiblyAuthor && this.props.author} </span>
+            {this.state.isEditingAuthor && this.createInput(this.state.author, 'author')} <br />
+            <div id="description" styleName="options" onDoubleClick={this.handleEditingDescription}>{this.state.isVisiblyDescription && this.props.description} </div>
+            {this.state.isEditingDescription && this.createInput(this.state.description, 'description')} <br />
+            <button styleName="delete" onClick={this.handleClick}>Удалить</button>
+          </div>
         </div>
       </div>
     );
