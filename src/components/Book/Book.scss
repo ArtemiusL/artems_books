@@ -1,8 +1,8 @@
 .root {
   padding: 15px;
+  display: inline-block;
   background-color: rgba(10, 80, 100, 0.9);
   color: #fff;
-  display: inline-block;
 }
 
 .bookCard {
@@ -23,6 +23,8 @@
 
 .options {
   cursor: text;
+  width: 100px;
+  word-wrap: break-word;
 }
 
 .bookOptions {
