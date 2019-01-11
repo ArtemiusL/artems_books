@@ -40,11 +40,12 @@ class Book extends PureComponent {
     });
   }
 
-  handleBlur = ({ target: { name, value } }) => {
+  updateInput = (name, value) => {
     const { editingBook, id } = this.props;
     const data = value.trim();
     if (data) {
       editingBook(id, { [name]: data });
+
       switch (name) {
         case 'title':
           this.handleEditingTitle();
@@ -61,9 +62,19 @@ class Book extends PureComponent {
     }
   }
 
+  handleBlur = ({ target: { name, value } }) => {
+    this.updateInput(name, value);
+  }
+
+  handleKeyUp = (evt) => {
+    if (evt.key === 'Enter') {
+      this.updateInput(evt.target.name, evt.target.value);
+    }
+  }
+
   handleChange = ({ target: { name, value } }) => {
     this.setState({
-      [name]: value,
+      [name]: value.replace(/^\s+/g, ''),
     });
   }
 
@@ -73,6 +84,7 @@ class Book extends PureComponent {
       value={value}
       onChange={this.handleChange}
       onBlur={this.handleBlur}
+      onKeyPress={this.handleKeyUp}
     />
   )
 
@@ -87,9 +99,9 @@ class Book extends PureComponent {
             <span styleName="options" onDoubleClick={this.handleEditingAuthor}>
               {this.state.isEditingAuthor ? this.createInput(this.state.author, 'author') : this.props.author}
             </span> <br />
-            <div styleName="options" onDoubleClick={this.handleEditingDescription}>
+            <span styleName="options" onDoubleClick={this.handleEditingDescription}>
               {this.state.isEditingDescription ? this.createInput(this.state.description, 'description') : this.props.description}
-            </div>
+            </span>
             <br />
             <button styleName="delete" onClick={this.handleClick}>Удалить</button>
           </div>

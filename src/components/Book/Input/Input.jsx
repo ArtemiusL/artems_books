@@ -13,6 +13,7 @@ class Input extends PureComponent {
       value,
       onChange,
       onBlur,
+      onKeyPress,
     } = this.props;
 
     return (
@@ -22,6 +23,7 @@ class Input extends PureComponent {
           value={value}
           onChange={onChange}
           onBlur={onBlur}
+          onKeyPress={onKeyPress}
         />
       </div>
     );
@@ -33,6 +35,7 @@ Input.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
+  onKeyPress: PropTypes.func,
 };
 
 export default Input;
