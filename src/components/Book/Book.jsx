@@ -12,9 +12,6 @@ class Book extends PureComponent {
     isEditingTitle: false,
     isEditingAuthor: false,
     isEditingDescription: false,
-    isVisiblyTitle: true,
-    isVisiblyAuthor: true,
-    isVisiblyDescription: true,
     title: this.props.title,
     author: this.props.author,
     description: this.props.description,
@@ -28,39 +25,39 @@ class Book extends PureComponent {
   handleEditingTitle = () => {
     this.setState({
       isEditingTitle: !this.state.isEditingTitle,
-      isVisiblyTitle: !this.state.isVisiblyTitle,
     });
   }
 
   handleEditingAuthor = () => {
     this.setState({
       isEditingAuthor: !this.state.isEditingAuthor,
-      isVisiblyAuthor: !this.state.isVisiblyAuthor,
     });
   }
 
   handleEditingDescription = () => {
     this.setState({
       isEditingDescription: !this.state.isEditingDescription,
-      isVisiblyDescription: !this.state.isVisiblyDescription,
     });
   }
 
   handleBlur = ({ target: { name, value } }) => {
     const { editingBook, id } = this.props;
-    editingBook(id, { [name]: value });
-    switch (name) {
-      case 'title':
-        this.handleEditingTitle();
-        break;
-      case 'author':
-        this.handleEditingAuthor();
-        break;
-      case 'description':
-        this.handleEditingDescription();
-        break;
-      default:
-        break;
+    const data = value.trim();
+    if (data) {
+      editingBook(id, { [name]: data });
+      switch (name) {
+        case 'title':
+          this.handleEditingTitle();
+          break;
+        case 'author':
+          this.handleEditingAuthor();
+          break;
+        case 'description':
+          this.handleEditingDescription();
+          break;
+        default:
+          break;
+      }
     }
   }
 
@@ -84,12 +81,16 @@ class Book extends PureComponent {
       <div styleName="root">
         <div styleName="bookCard">
           <div styleName="bookOptions">
-            <span id="title" styleName="options" onDoubleClick={this.handleEditingTitle}>{this.state.isVisiblyTitle && this.props.title } </span>
-            {this.state.isEditingTitle && this.createInput(this.state.title, 'title')} <br />
-            <span id="author" styleName="options" onDoubleClick={this.handleEditingAuthor}>{this.state.isVisiblyAuthor && this.props.author} </span>
-            {this.state.isEditingAuthor && this.createInput(this.state.author, 'author')} <br />
-            <div id="description" styleName="options" onDoubleClick={this.handleEditingDescription}>{this.state.isVisiblyDescription && this.props.description} </div>
-            {this.state.isEditingDescription && this.createInput(this.state.description, 'description')} <br />
+            <span styleName="options" onDoubleClick={this.handleEditingTitle}>
+              {this.state.isEditingTitle ? this.createInput(this.state.title, 'title') : this.props.title}
+            </span> <br />
+            <span styleName="options" onDoubleClick={this.handleEditingAuthor}>
+              {this.state.isEditingAuthor ? this.createInput(this.state.author, 'author') : this.props.author}
+            </span> <br />
+            <div styleName="options" onDoubleClick={this.handleEditingDescription}>
+              {this.state.isEditingDescription ? this.createInput(this.state.description, 'description') : this.props.description}
+            </div>
+            <br />
             <button styleName="delete" onClick={this.handleClick}>Удалить</button>
           </div>
         </div>
