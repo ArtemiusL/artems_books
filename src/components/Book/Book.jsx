@@ -12,9 +12,6 @@ class Book extends PureComponent {
     isEditingTitle: false,
     isEditingAuthor: false,
     isEditingDescription: false,
-    title: this.props.title,
-    author: this.props.author,
-    description: this.props.description,
   };
 
   handleClick = () => {
@@ -40,7 +37,18 @@ class Book extends PureComponent {
     });
   }
 
-  updateInput = (name, value) => {
+  handleKeyUp = (evt) => {
+    if (evt.key === 'Enter') {
+      this.updateInput(evt);
+    }
+  }
+
+  handleChange = ({ target: { name, value } }) => {
+    const { editingBook, id } = this.props;
+    editingBook(id, { [name]: value.replace(/^\s+/g, '') });
+  }
+
+  updateInput = ({ target: { name, value } }) => {
     const { editingBook, id } = this.props;
     const data = value.trim();
     if (data) {
@@ -62,28 +70,12 @@ class Book extends PureComponent {
     }
   }
 
-  handleBlur = ({ target: { name, value } }) => {
-    this.updateInput(name, value);
-  }
-
-  handleKeyUp = (evt) => {
-    if (evt.key === 'Enter') {
-      this.updateInput(evt.target.name, evt.target.value);
-    }
-  }
-
-  handleChange = ({ target: { name, value } }) => {
-    this.setState({
-      [name]: value.replace(/^\s+/g, ''),
-    });
-  }
-
   createInput = (value, name) => (
     <Input
       name={name}
       value={value}
       onChange={this.handleChange}
-      onBlur={this.handleBlur}
+      onBlur={this.updateInput}
       onKeyPress={this.handleKeyUp}
     />
   )
@@ -94,13 +86,13 @@ class Book extends PureComponent {
         <div styleName="bookCard">
           <div styleName="bookOptions">
             <span styleName="options" onDoubleClick={this.handleEditingTitle}>
-              {this.state.isEditingTitle ? this.createInput(this.state.title, 'title') : this.props.title}
+              {this.state.isEditingTitle ? this.createInput(this.props.title, 'title') : this.props.title}
             </span> <br />
             <span styleName="options" onDoubleClick={this.handleEditingAuthor}>
-              {this.state.isEditingAuthor ? this.createInput(this.state.author, 'author') : this.props.author}
+              {this.state.isEditingAuthor ? this.createInput(this.props.author, 'author') : this.props.author}
             </span> <br />
             <span styleName="options" onDoubleClick={this.handleEditingDescription}>
-              {this.state.isEditingDescription ? this.createInput(this.state.description, 'description') : this.props.description}
+              {this.state.isEditingDescription ? this.createInput(this.props.description, 'description') : this.props.description}
             </span>
             <br />
             <button styleName="delete" onClick={this.handleClick}>Удалить</button>
