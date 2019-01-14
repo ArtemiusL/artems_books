@@ -1,4 +1,4 @@
-import { ADD_BOOK, REMOVE_BOOK, EDITING_BOOK } from './constants/books';
+import { ADD_BOOK, REMOVE_BOOK, EDITING_BOOK, SET_VISIBILITY_FILTER } from './constants/books';
 
 
 export const addBook = (id, title, author, description) => ({
@@ -22,5 +22,10 @@ export const editBook = (id, newItem) => ({
     id,
     newItem,
   },
+});
+
+export const setVisibilityFilter = filter => ({
+  type: SET_VISIBILITY_FILTER,
+  filter,
 });
 
