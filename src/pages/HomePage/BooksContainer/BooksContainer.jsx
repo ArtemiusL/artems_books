@@ -42,8 +42,14 @@ BooksContainer.propTypes = {
   editBook: PropTypes.func,
 };
 
-const mapStateToProps = ({ books }) => ({
-  books,
+const mapStateToProps = state => ({
+  books: state.books.filter((item) => {
+    const textMatch =
+      item.title.toLowerCase().includes(state.visibilityFilter.toLowerCase()) ||
+      item.author.toLowerCase().includes(state.visibilityFilter.toLowerCase()) ||
+      item.description.toLowerCase().includes(state.visibilityFilter.toLowerCase());
+    return textMatch;
+  }),
 });
 
 const mapDispatchToProps = dispatch => (
