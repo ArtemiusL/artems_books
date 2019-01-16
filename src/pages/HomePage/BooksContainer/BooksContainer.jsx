@@ -44,11 +44,16 @@ BooksContainer.propTypes = {
 
 const mapStateToProps = state => ({
   books: state.books.filter((item) => {
-    const textMatch =
-      item.title.toLowerCase().includes(state.visibilityFilter.toLowerCase()) ||
-      item.author.toLowerCase().includes(state.visibilityFilter.toLowerCase()) ||
-      item.description.toLowerCase().includes(state.visibilityFilter.toLowerCase());
-    return textMatch;
+    let counter = 0;
+    Object.values(item).map((value) => {
+      if (typeof value !== 'number') {
+        if (value.toLowerCase().indexOf(state.visibilityFilter.toLowerCase()) !== -1) {
+          counter += 1;
+        }
+      }
+      return false;
+    });
+    return counter > 0;
   }),
 });
 
