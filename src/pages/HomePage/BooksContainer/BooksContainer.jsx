@@ -8,10 +8,8 @@ import { removeBook, editBook } from '_actions/books';
 import Book from '_components/Book';
 
 class BooksContainer extends PureComponent {
-  createBookBlock = () => {
-    const { books } = this.props;
-
-    return books.map(item => (
+  createBookBlock = books => (
+    books.map(item => (
       <Book
         removeBook={this.props.removeBook}
         editingBook={this.props.editBook}
@@ -22,15 +20,30 @@ class BooksContainer extends PureComponent {
         description={item.description}
       />
     ),
-    );
-  }
+    ));
+
+  searchBooks = () => (
+    this.props.books.filter((item) => {
+      let counter = 0;
+      Object.values(item).map((value) => {
+        if (typeof value !== 'number') {
+          if (value.toLowerCase().indexOf(this.props.visibilityFilter.toLowerCase()) !== -1) {
+            counter += 1;
+          }
+        }
+        return false;
+      });
+      return counter > 0;
+    })
+  );
 
   render() {
-    const BookBlock = this.createBookBlock();
+    const filterBooks = this.searchBooks();
+    const bookBlocks = this.createBookBlock(filterBooks);
 
     return (
       <Fragment>
-        {BookBlock}
+        { bookBlocks }
       </Fragment>
     );
   }
@@ -40,10 +53,12 @@ BooksContainer.propTypes = {
   books: PropTypes.array,
   removeBook: PropTypes.func,
   editBook: PropTypes.func,
+  visibilityFilter: PropTypes.string,
 };
 
-const mapStateToProps = ({ books }) => ({
+const mapStateToProps = ({ books, visibilityFilter }) => ({
   books,
+  visibilityFilter,
 });
 
 const mapDispatchToProps = dispatch => (

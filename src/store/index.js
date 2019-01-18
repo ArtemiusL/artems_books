@@ -9,6 +9,12 @@ export default (history, initialState) => {
     thunk,
     routerMiddleware(history),
   ];
+  let persistedState;
+  if (!__SERVER__) {
+    persistedState = localStorage.getItem('reduxState')
+      ? JSON.parse(localStorage.getItem('reduxState'))
+      : undefined;
+  }
 
   const composeEnhancers =
     (__DEV__ &&
@@ -19,8 +25,18 @@ export default (history, initialState) => {
   const enhancers = composeEnhancers(
     applyMiddleware(...middlewares),
   );
+  let store;
+  if (!__SERVER__) {
+    store = createStore(rootReducer, persistedState, enhancers);
+  } else {
+    store = createStore(rootReducer, initialState, enhancers);
+  }
 
-  const store = createStore(rootReducer, initialState, enhancers);
+  if (!__SERVER__) {
+    store.subscribe(() => {
+      localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+    });
+  }
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
