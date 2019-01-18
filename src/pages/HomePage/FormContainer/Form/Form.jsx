@@ -25,6 +25,12 @@ const constantFields = [
     label: 'Введите описание книги',
     required: true,
   },
+  {
+    id: 4,
+    fieldName: 'imgUrl',
+    label: 'Введите ссылку на картинку',
+    required: true,
+  },
 ];
 
 @CSSModules(styles, { allowMultiple: true })
@@ -41,6 +47,10 @@ class Form extends PureComponent {
       },
       {
         name: 'description',
+        value: '',
+      },
+      {
+        name: 'imgUrl',
         value: '',
       },
     ],
@@ -107,7 +117,7 @@ class Form extends PureComponent {
     const { addBook, books } = this.props;
     if (!(this.isEmptyFields())) {
       const id = books.length ? books[books.length - 1].id + 1 : 1;
-      addBook(id, fields[0].value, fields[1].value, fields[2].value);
+      addBook(id, fields[0].value, fields[1].value, fields[2].value, fields[3].value);
       const newFields = this.resetFiledsValue(fields);
       this.setState({
         fields: newFields,

@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 
 import { removeBook, editBook } from '_actions/books';
 
-import Book from '_components/Book';
+import Card from '_components/Card';
 
 class BooksContainer extends PureComponent {
   createBookBlock = books => (
     books.map(item => (
-      <Book
+      <Card
         removeBook={this.props.removeBook}
         editingBook={this.props.editBook}
         id={item.id}
@@ -18,6 +18,7 @@ class BooksContainer extends PureComponent {
         title={item.title}
         author={item.author}
         description={item.description}
+        imgUrl={item.imgUrl}
       />
     ),
     ));
