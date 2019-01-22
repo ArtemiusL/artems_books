@@ -13,7 +13,6 @@ import styles from './App.scss';
 const App = ({ route }) => (
   <div className={styles.App}>
     <Helmet {...config.app} />
-    <hr />
     {/* child routes won't render without this */}
     {renderRoutes(route.routes)}
   </div>
