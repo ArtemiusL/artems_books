@@ -1,14 +1,14 @@
 module.exports = {
   port: process.env.PORT,
-  defaultLocale: 'en',
+  defaultLocale: 'ru',
   app: {
-    htmlAttributes: { lang: 'en' },
-    title: 'React Starter Boilerplate',
-    titleTemplate: 'React Starter Boilerplate - %s',
+    htmlAttributes: { lang: 'ru' },
+    title: 'Книжная библиотека',
+    titleTemplate: 'Книжная библиотека - %s',
     meta: [
       {
-        name: 'description',
-        content: 'The best react universal starter boilerplate in the world.',
+        name: 'Описание',
+        content: 'Хранение твоих любимых книг в одном месте.',
       },
     ],
   },
