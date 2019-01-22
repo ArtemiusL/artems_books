@@ -10,25 +10,25 @@ const constantFields = [
   {
     id: 1,
     fieldName: 'title',
-    label: 'Введите название книги',
+    label: 'Название книги',
     required: true,
   },
   {
     id: 2,
     fieldName: 'author',
-    label: 'Введите автора книги',
+    label: 'Автор книги',
     required: true,
   },
   {
     id: 3,
     fieldName: 'description',
-    label: 'Введите описание книги',
+    label: 'Описание книги',
     required: true,
   },
   {
     id: 4,
     fieldName: 'imgUrl',
-    label: 'Введите ссылку на картинку',
+    label: 'Ссылка на обложку книги',
     required: true,
   },
 ];
@@ -76,6 +76,7 @@ class Form extends PureComponent {
           name={item.fieldName}
           handleChange={this.updateInput}
           data={currentField.value}
+          required={item.required}
           {...item}
         />
       );
@@ -112,7 +113,8 @@ class Form extends PureComponent {
     })
   );
 
-  handleClickAdd = () => {
+  handleClickAdd = (evt) => {
+    evt.preventDefault();
     const { fields } = this.state;
     const { addBook, books } = this.props;
     if (!(this.isEmptyFields())) {
@@ -128,13 +130,18 @@ class Form extends PureComponent {
   render() {
     return (
       <div styleName="root">
-        <form styleName="form">
-          <h1>Книжная библиотека</h1>
-          {this.createForm()}
-        </form>
-        <button styleName="button" onClick={this.handleClickAdd}>
-          Добавить книгу
-        </button>
+        <div>
+          <h1 styleName="title">Книжная библиотека</h1>
+          <form
+            onSubmit={this.handleClickAdd}
+            styleName="form"
+          >
+            {this.createForm()}
+            <button styleName="button" type="submit">
+              Добавить книгу
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
