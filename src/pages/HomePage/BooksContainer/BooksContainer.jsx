@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 import { removeBook, editBook } from '_actions/books';
-
 import Card from '_components/Card';
 
 class BooksContainer extends PureComponent {
