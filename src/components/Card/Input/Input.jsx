@@ -9,6 +9,7 @@ class Input extends PureComponent {
     return (
       <div styleName="root">
         <input
+          styleName="input"
           {...this.props}
         />
       </div>

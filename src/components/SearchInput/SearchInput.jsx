@@ -9,9 +9,17 @@ class SearchInput extends PureComponent {
   render() {
     return (
       <div styleName="root">
-        <input
-          {...this.props}
-        />
+        <div styleName="container">
+          <img
+            styleName="icon"
+            src="https://api.icons8.com/download/0c1134f592bf842c2b6b34fc071b57f23d397885/windows10/PNG/512/Very_Basic/search-512.png"
+            alt="Поиск"
+          />
+          <input
+            styleName="search"
+            {...this.props}
+          />
+        </div>
       </div>
     );
   }
@@ -23,4 +31,4 @@ SearchInput.propTypes = {
   placeholder: PropTypes.string,
 };
 
-export default CSSModules(SearchInput, styles);
+export default SearchInput;

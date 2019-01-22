@@ -84,24 +84,26 @@ class Card extends PureComponent {
   render() {
     return (
       <div styleName="root">
-        <div styleName="bookCard">
-          <div styleName="bookOptions">
-            <span styleName="options" onDoubleClick={this.handleEditingTitle}>
-              {this.state.isEditingTitle ? this.createInput(this.props.title, 'title') : this.props.title}
-            </span> <br />
-            <span styleName="options" onDoubleClick={this.handleEditingAuthor}>
-              {this.state.isEditingAuthor ? this.createInput(this.props.author, 'author') : this.props.author}
-            </span> <br />
-            <span styleName="options" onDoubleClick={this.handleEditingDescription}>
-              {this.state.isEditingDescription ? this.createInput(this.props.description, 'description') : this.props.description}
-            </span>
-            <br />
-            <img styleName="options" src={this.props.imgUrl} alt="картинка" />
-            <br />
-            <button styleName="delete" onClick={this.handleClick}>Удалить</button>
-          </div>
-          <div>
-            <Link to={`/Bookcard/${this.props.id}`}>Подробнее</Link>
+        <div styleName="container">
+          <div styleName="bookCard">
+            <div styleName="bookOptions">
+              <span styleName="options" onDoubleClick={this.handleEditingTitle}>
+                <b>Книга:</b> {this.state.isEditingTitle ? this.createInput(this.props.title, 'title') : this.props.title}
+              </span> <br />
+              <span styleName="options" onDoubleClick={this.handleEditingAuthor}>
+                <b>Автор:</b> {this.state.isEditingAuthor ? this.createInput(this.props.author, 'author') : this.props.author}
+              </span> <br />
+              <span styleName="options" onDoubleClick={this.handleEditingDescription}>
+                <b>Описание:</b> {this.state.isEditingDescription ? this.createInput(this.props.description, 'description') : this.props.description}
+              </span>
+              <br />
+              <img styleName="picture" src={this.props.imgUrl} alt="картинка" />
+              <br />
+              <button styleName="delete" onClick={this.handleClick}>Удалить</button>
+            </div>
+            <div>
+              <Link to={`/Bookcard/${this.props.id}`}>Подробнее</Link>
+            </div>
           </div>
         </div>
       </div>
