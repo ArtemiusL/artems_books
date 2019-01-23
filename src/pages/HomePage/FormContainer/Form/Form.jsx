@@ -10,19 +10,25 @@ const constantFields = [
   {
     id: 1,
     fieldName: 'title',
-    label: 'Введите название книги',
+    label: 'Название книги',
     required: true,
   },
   {
     id: 2,
     fieldName: 'author',
-    label: 'Введите автора книги',
+    label: 'Автор книги',
     required: true,
   },
   {
     id: 3,
     fieldName: 'description',
-    label: 'Введите описание книги',
+    label: 'Описание книги',
+    required: true,
+  },
+  {
+    id: 4,
+    fieldName: 'imgUrl',
+    label: 'Ссылка на обложку книги',
     required: true,
   },
 ];
@@ -41,6 +47,10 @@ class Form extends PureComponent {
       },
       {
         name: 'description',
+        value: '',
+      },
+      {
+        name: 'imgUrl',
         value: '',
       },
     ],
@@ -66,6 +76,7 @@ class Form extends PureComponent {
           name={item.fieldName}
           handleChange={this.updateInput}
           data={currentField.value}
+          required={item.required}
           {...item}
         />
       );
@@ -102,12 +113,21 @@ class Form extends PureComponent {
     })
   );
 
-  handleClickAdd = () => {
+  handleClickAdd = (evt) => {
+    evt.preventDefault();
     const { fields } = this.state;
     const { addBook, books } = this.props;
     if (!(this.isEmptyFields())) {
       const id = books.length ? books[books.length - 1].id + 1 : 1;
-      addBook(id, fields[0].value, fields[1].value, fields[2].value);
+      const book = {
+        id,
+        title: fields[0].value,
+        author: fields[1].value,
+        description: fields[2].value,
+        imgUrl: fields[3].value,
+      };
+
+      addBook(book);
       const newFields = this.resetFiledsValue(fields);
       this.setState({
         fields: newFields,
@@ -118,13 +138,18 @@ class Form extends PureComponent {
   render() {
     return (
       <div styleName="root">
-        <form styleName="form">
-          <h1>Книжная библиотека</h1>
-          {this.createForm()}
-        </form>
-        <button styleName="button" onClick={this.handleClickAdd}>
-          Добавить книгу
-        </button>
+        <div>
+          <h1 styleName="title">Книжная библиотека</h1>
+          <form
+            styleName="form"
+            onSubmit={this.handleClickAdd}
+          >
+            {this.createForm()}
+            <button styleName="button" type="submit">
+              Добавить книгу
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

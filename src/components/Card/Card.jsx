@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
 import CSSModules from 'react-css-modules';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Input from './Input';
 
-import styles from './Book.scss';
+import styles from './Card.scss';
 
 @CSSModules(styles, { allowMultiple: true })
-class Book extends PureComponent {
+class Card extends PureComponent {
   state = {
     isEditingTitle: false,
     isEditingAuthor: false,
@@ -83,19 +84,26 @@ class Book extends PureComponent {
   render() {
     return (
       <div styleName="root">
-        <div styleName="bookCard">
-          <div styleName="bookOptions">
-            <span styleName="options" onDoubleClick={this.handleEditingTitle}>
-              {this.state.isEditingTitle ? this.createInput(this.props.title, 'title') : this.props.title}
-            </span> <br />
-            <span styleName="options" onDoubleClick={this.handleEditingAuthor}>
-              {this.state.isEditingAuthor ? this.createInput(this.props.author, 'author') : this.props.author}
-            </span> <br />
-            <span styleName="options" onDoubleClick={this.handleEditingDescription}>
-              {this.state.isEditingDescription ? this.createInput(this.props.description, 'description') : this.props.description}
-            </span>
-            <br />
-            <button styleName="delete" onClick={this.handleClick}>Удалить</button>
+        <div styleName="container">
+          <div styleName="book">
+            <div styleName="card">
+              <span styleName="options" onDoubleClick={this.handleEditingTitle}>
+                <b>Книга:</b> {this.state.isEditingTitle ? this.createInput(this.props.title, 'title') : this.props.title}
+              </span> <br />
+              <span styleName="options" onDoubleClick={this.handleEditingAuthor}>
+                <b>Автор:</b> {this.state.isEditingAuthor ? this.createInput(this.props.author, 'author') : this.props.author}
+              </span> <br />
+              <span styleName="options" onDoubleClick={this.handleEditingDescription}>
+                <b>Описание:</b> {this.state.isEditingDescription ? this.createInput(this.props.description, 'description') : this.props.description}
+              </span>
+              <br />
+              <img styleName="picture" src={this.props.imgUrl} alt="картинка" />
+              <br />
+              <button styleName="delete" onClick={this.handleClick}>Удалить</button>
+            </div>
+            <div>
+              <Link to={`/Bookcard/${this.props.id}`}>Подробнее</Link>
+            </div>
           </div>
         </div>
       </div>
@@ -103,13 +111,14 @@ class Book extends PureComponent {
   }
 }
 
-Book.propTypes = {
+Card.propTypes = {
   removeBook: PropTypes.func,
   editingBook: PropTypes.func,
   title: PropTypes.string,
   author: PropTypes.string,
   description: PropTypes.string,
+  imgUrl: PropTypes.string,
   id: PropTypes.number,
 };
 
-export default CSSModules(Book, styles);
+export default CSSModules(Card, styles);

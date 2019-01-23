@@ -4,20 +4,20 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 import { removeBook, editBook } from '_actions/books';
-
-import Book from '_components/Book';
+import Card from '_components/Card';
 
 class BooksContainer extends PureComponent {
   createBookBlock = books => (
     books.map(item => (
-      <Book
-        removeBook={this.props.removeBook}
-        editingBook={this.props.editBook}
-        id={item.id}
+      <Card
         key={item.id}
+        id={item.id}
         title={item.title}
         author={item.author}
         description={item.description}
+        imgUrl={item.imgUrl}
+        removeBook={this.props.removeBook}
+        editingBook={this.props.editBook}
       />
     ),
     ));

@@ -1,43 +1,55 @@
 @import '~styles/variables';
 
 .root {
-  padding: 15px;
-  display: inline-block;
-  background-color: rgba($color-deep-sea-green, 0.9);
-  color: $color-white;
+  color: $color-gallery;
 }
 
-.bookCard {
-  position: relative;
-  width: 240px;
-  height: 180px;
-  margin: 20px;
+.container {
+  float: left;
+  width: calc(100% / 3);
   display: flex;
+  background-color: rgba($color-deep-sea-green, 0.9);
+}
+
+.book {
+  position: relative;
+  width: 80%;
+  height: 400px;
+  margin: 10%;
+  padding: 20px;
+  display: flex;
+  overflow: auto;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 20px;
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.2;
   color: rgba($color-black, 0.8);
-  background: #fff;
+  background: $color-white;
 }
 
 .options {
   width: 100px;
+  padding-bottom: 500px;
   cursor: text;
   word-wrap: break-word;
 }
 
-.bookOptions {
+.picture {
+  max-width: 150px;
+  margin-top: 20px;
+}
+
+.card {
   text-align: center;
 }
 
 .delete {
   position: relative;
   display: inline-block;
+  margin-top: 20px;
   padding: 5px 12px;
+  border-radius: 5px;
   outline: none;
-  border-radius: 2px;
   background: linear-gradient($color-storm-gray, $color-abbey);
   font-size: 70%;
   font-weight: 500;
@@ -56,5 +68,5 @@
   box-shadow:
     0 0 1px rgba($color-black, 0.5) inset,
     0 2px 3px rgba($color-black, 0.5) inset,
-    0 1px 1px rgba($color-white, 0.1);
+    0 1px 1px rgba($color-gallery, 0.1);
 }

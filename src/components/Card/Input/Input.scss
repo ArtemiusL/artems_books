@@ -1,13 +1,11 @@
-.root {
-  padding: 1px;
-}
+@import '~styles/variables';
 
 .input {
   display: inline-block;
   width: 290px;
   padding-bottom: 2px;
   border: none;
-  border-bottom: 1px solid rgba(10, 30, 50, 0.9);
+  border-bottom: 1px solid $color-cloud-burst;
   font-size: 17px;
   line-height: 20px;
   text-align: center;

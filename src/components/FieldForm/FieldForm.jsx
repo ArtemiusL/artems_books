@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { PureComponent } from 'react';
 import CSSModules from 'react-css-modules';
 import PropTypes from 'prop-types';
@@ -13,16 +12,22 @@ class FieldForm extends PureComponent {
       label,
       handleChange,
       name,
+      required,
     } = this.props;
 
     return (
       <div styleName="root">
-        <label>{label}<br />
+        <label
+          styleName="description"
+          htmlFor={name}
+        >
+          {label} <br />
           <input
+            styleName="input"
             type="text"
             name={name}
-            required
             value={data}
+            required={required}
             onChange={handleChange}
           />
         </label>
@@ -36,6 +41,7 @@ FieldForm.propTypes = {
   data: PropTypes.string,
   name: PropTypes.string,
   handleChange: PropTypes.func,
+  required: PropTypes.bool,
 };
 
 export default FieldForm;
