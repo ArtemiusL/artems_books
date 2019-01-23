@@ -119,7 +119,15 @@ class Form extends PureComponent {
     const { addBook, books } = this.props;
     if (!(this.isEmptyFields())) {
       const id = books.length ? books[books.length - 1].id + 1 : 1;
-      addBook(id, fields[0].value, fields[1].value, fields[2].value, fields[3].value);
+      const book = {
+        id,
+        title: fields[0].value,
+        author: fields[1].value,
+        description: fields[2].value,
+        imgUrl: fields[3].value,
+      };
+
+      addBook(book);
       const newFields = this.resetFiledsValue(fields);
       this.setState({
         fields: newFields,
@@ -133,8 +141,8 @@ class Form extends PureComponent {
         <div>
           <h1 styleName="title">Книжная библиотека</h1>
           <form
-            onSubmit={this.handleClickAdd}
             styleName="form"
+            onSubmit={this.handleClickAdd}
           >
             {this.createForm()}
             <button styleName="button" type="submit">
