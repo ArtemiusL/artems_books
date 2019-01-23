@@ -8,8 +8,8 @@ import BooksContainer from './BooksContainer';
 const HomePage = () => (
   <Fragment>
     <Helmet title="Home" />
-    <SearchContainer />
     <FormContainer />
+    <SearchContainer />
     <BooksContainer />
   </Fragment>
 );

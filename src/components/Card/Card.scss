@@ -6,12 +6,12 @@
 
 .container {
   float: left;
-  width: 33.33%;
+  width: calc(100% / 3);
   display: flex;
   background-color: rgba($color-deep-sea-green, 0.9);
 }
 
-.bookCard {
+.book {
   position: relative;
   width: 400px;
   height: 400px;

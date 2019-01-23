@@ -20,12 +20,12 @@ class BookCard extends PureComponent {
     return book.map(item => (
       <div styleName="root">
         <div key={item.id} styleName="card">
-          <div styleName="cardOptions">
+          <div styleName="options">
             <span>Книга: {item.title}</span> <br />
             <span>Автор: {item.author}</span> <br />
             <span>Описание: {item.description}</span> <br />
           </div>
-          <div styleName="blockImage">
+          <div styleName="image">
             <img styleName="picture" src={item.imgUrl} alt="картинка" />
           </div>
         </div>

@@ -12,13 +12,12 @@ import styles from './SearchContainer.scss';
 @CSSModules(styles, { allowMultiple: true })
 class SearchContainer extends PureComponent {
   updateUrl(valueInput) {
-    const { location, history } = this.props;
+    const { history } = this.props;
+    let searchUrl;
     if (valueInput) {
-      location.search = `/?search=${valueInput}`;
-    } else {
-      location.search = '/?';
+      searchUrl = `/?search=${valueInput}`;
     }
-    history.push(location.search);
+    history.push(searchUrl);
   }
 
   handleChangeFilter = (e) => {
@@ -48,7 +47,6 @@ class SearchContainer extends PureComponent {
 SearchContainer.propTypes = {
   onChangeFilter: PropTypes.func,
   filterValue: PropTypes.string,
-  location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };
 

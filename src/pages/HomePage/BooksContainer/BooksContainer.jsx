@@ -10,14 +10,14 @@ class BooksContainer extends PureComponent {
   createBookBlock = books => (
     books.map(item => (
       <Card
-        removeBook={this.props.removeBook}
-        editingBook={this.props.editBook}
-        id={item.id}
         key={item.id}
+        id={item.id}
         title={item.title}
         author={item.author}
         description={item.description}
         imgUrl={item.imgUrl}
+        removeBook={this.props.removeBook}
+        editingBook={this.props.editBook}
       />
     ),
     ));

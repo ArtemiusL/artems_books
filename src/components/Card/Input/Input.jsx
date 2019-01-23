@@ -7,12 +7,10 @@ import styles from './Input.scss';
 class Input extends PureComponent {
   render() {
     return (
-      <div styleName="root">
-        <input
-          styleName="input"
-          {...this.props}
-        />
-      </div>
+      <input
+        styleName="input"
+        {...this.props}
+      />
     );
   }
 }
