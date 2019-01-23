@@ -86,7 +86,7 @@ class Card extends PureComponent {
       <div styleName="root">
         <div styleName="container">
           <div styleName="book">
-            <div styleName="bookOptions">
+            <div styleName="card">
               <span styleName="options" onDoubleClick={this.handleEditingTitle}>
                 <b>Книга:</b> {this.state.isEditingTitle ? this.createInput(this.props.title, 'title') : this.props.title}
               </span> <br />
