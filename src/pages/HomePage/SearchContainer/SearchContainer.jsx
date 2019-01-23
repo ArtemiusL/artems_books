@@ -16,6 +16,8 @@ class SearchContainer extends PureComponent {
     let searchUrl;
     if (valueInput) {
       searchUrl = `/?search=${valueInput}`;
+    } else {
+      searchUrl = '/';
     }
     history.push(searchUrl);
   }
@@ -34,9 +36,9 @@ class SearchContainer extends PureComponent {
       <div styleName="root">
         <div styleName="containerSearch">
           <SearchInput
-            onChange={this.handleChangeFilter}
             value={filterValue}
             placeholder="Что ищем?"
+            onChange={this.handleChangeFilter}
           />
         </div>
       </div>
